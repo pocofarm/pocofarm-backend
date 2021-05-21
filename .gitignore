@@ -1,0 +1,13 @@
+# Distribution / packaging
+.env
+__pycache__/
+node_module/
+
+# Serverless directories
+.serverless
+node_modules
+
+.vscode/
+.idea/
+
+

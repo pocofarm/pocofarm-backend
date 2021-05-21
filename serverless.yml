@@ -1,0 +1,30 @@
+service: pocofarm-backend
+
+provider:
+  name: aws
+  runtime: python3.8
+  region: ap-northeast-2
+  stage: dev
+  versionFunctions: false
+  memorySize: 256
+  timeout: 30
+custom:
+  pythonRequirements:
+    dockerizePip: non-linux
+
+package:
+  exclude:
+    - node_modules/**
+    - .gitignore
+
+functions:
+  app:
+    handler: src.configs.prod.handler
+    events:
+      - http: ANY /
+      - http:
+          path: /{proxy+}
+          method: ANY
+
+plugins:
+  - serverless-python-requirements
